@@ -4,6 +4,7 @@
  */
 
 import fs from 'fs';
+import fx from 'mkdir-recursive';
 import path from 'path';
 import chalk from 'chalk';
 import concat from 'concat';
@@ -52,12 +53,12 @@ class JSConcatPlugin {
 		// Start message
 		console.log('\n' + chalk.bgWhite.black('   Concating   ') + '\n');
 
-		if (!fs.existsSync(this.options.output)) {
-			fs.mkdirSync(this.options.output);
-		}
-
 		for (let bundle in this.options.files){
 			let files = this.options.files[bundle];
+			let dir = path.join(this.options.output, path.dirname(bundle));
+			if (!fs.existsSync(dir)) {
+				fx.mkdirSync(dir);
+			}
 			concat(files, path.join(this.options.output, bundle));
 		}
 
