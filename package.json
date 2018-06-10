@@ -1,6 +1,6 @@
 {
   "name": "webpack-js-concat-plugin",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -24,7 +24,8 @@
   "homepage": "https://github.com/beckan/webpack-js-concat-plugin#readme",
   "dependencies": {
     "chalk": "^2.4.1",
-    "concat": "^1.0.3"
+    "concat": "^1.0.3",
+    "mkdir-recursive": "^0.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
