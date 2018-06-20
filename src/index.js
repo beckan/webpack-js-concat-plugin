@@ -23,7 +23,7 @@ class JSConcatPlugin {
 	apply (compiler) {
 		// If Webpack 4, then use new plugin hooks
 		if (compiler.hooks) {
-			compiler.hooks.afterEmit.tapAsync(this.pluginName, (compiler, callback) => {
+			compiler.hooks.run.tapAsync(this.pluginName, (compiler, callback) => {
 				this.run(compiler, callback);
 			});
 		}
