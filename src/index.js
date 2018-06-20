@@ -53,17 +53,24 @@ class JSConcatPlugin {
 		// Start message
 		console.log('\n' + chalk.bgWhite.black('   Concating   ') + '\n');
 
+		let promises = [];
+
 		for (let bundle in this.options.files){
 			let files = this.options.files[bundle];
 			let dir = path.join(this.options.output, path.dirname(bundle));
 			if (!fs.existsSync(dir)) {
 				fx.mkdirSync(dir);
 			}
-			concat(files, path.join(this.options.output, bundle));
+
+			let filePath = path.join(this.options.output, bundle);
+
+			promises.push(concat(files, filePath));
 		}
 
-		callback();
+		Promise.all(promises).then(() => {
+			callback();
+		});
 	}
-}
+};
 
 export default JSConcatPlugin;
